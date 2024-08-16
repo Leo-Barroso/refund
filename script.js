@@ -65,6 +65,7 @@ function expenseAdd(newExpense) {
     expenseList.append(expenseItem)
 
     updateTotals()
+    formClear()
   } catch (error) {
     alert("Não foi possível cadastrar a despesa.")
     console.log(error)
@@ -94,4 +95,21 @@ function updateTotals() {
     alert("Não foi possível atualizar os valores.")
     console.log(error)
   }
+}
+
+expenseList.addEventListener("click", (event) => {
+  if(event.target.classList.contains("remove-icon")) {
+    const item = event.target.closest(".expense")
+    item.remove()
+    expense.focus()
+
+  }
+  updateTotals()
+})
+
+function formClear() {
+  expense.value = ""
+  category.value = ""
+  amount.value = ""
+  expense.focus()
 }
